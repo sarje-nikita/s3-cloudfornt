@@ -15,8 +15,7 @@ jobs:
         uses: hashicorp/setup-terraform@v2
         with:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-      
-      # Remove AWS credentials configuration - not needed for remote execution
+          terraform_wrapper: false  # This fixes the output issue
       
       - name: Terraform Init
         run: terraform -chdir=terraform init
@@ -31,7 +30,6 @@ jobs:
         id: tf_output
         run: echo "cloudfront_url=$(terraform -chdir=terraform output -raw cloudfront_url)" >> $GITHUB_ENV
       
-      # For S3 upload, you still need local AWS credentials
       - name: Configure AWS credentials for S3 upload
         uses: aws-actions/configure-aws-credentials@v2
         with:
