@@ -7,6 +7,13 @@ terraform {
       version = "~> 5.0"
     }
   } 
+  cloud {
+    organization = "nikitasarje"
+
+    workspaces {
+      name = "test"
+    }
+  }
 
 }
 provider "aws" {
