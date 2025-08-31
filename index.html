@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Dugoo Store</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #1a1a1a;
+      --muted: #666;
+      --brand: #3b82f6;
+      --brand-dark: #1e40af;
+      --card: #f7f7f8;
+      --border: #e6e6e6;
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.5;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    /* Layout */
+    .container { width: min(1100px, 92%); margin: 0 auto; }
+
+    /* Header */
+    header {
+      position: sticky; top: 0; z-index: 10;
+      backdrop-filter: saturate(180%) blur(10px);
+      background: rgba(255,255,255,0.8);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 0;
+    }
+    .logo { font-weight: 800; letter-spacing: 0.3px; }
+    .logo span { color: var(--brand); }
+    .nav a { margin-left: 16px; color: var(--muted); font-weight: 600; }
+    .nav a:hover { color: var(--text); }
+
+    /* Hero */
+    .hero {
+      display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 28px; align-items: center;
+      padding: 48px 0 28px;
+    }
+    .hero h1 { font-size: clamp(28px, 6vw, 48px); margin: 0 0 12px; }
+    .hero p { color: var(--muted); margin: 0 0 18px; }
+    .cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--brand); color: white; border: none; cursor: pointer;
+      padding: 12px 18px; border-radius: var(--radius); font-weight: 700;
+      box-shadow: 0 6px 14px rgba(59,130,246,0.25);
+    }
+    .cta:hover { background: var(--brand-dark); }
+    .hero-card { background: var(--card); border: 1px solid var(--border); border-radius: 18px; overflow: hidden; }
+    .hero-card img { aspect-ratio: 4/3; object-fit: cover; }
+    .hero-card .note { padding: 12px 14px; color: var(--muted); font-size: 14px; }
+
+    /* Section Titles */
+    .section-title { font-size: 24px; margin: 34px 0 10px; }
+    .section-sub { color: var(--muted); margin: 0 0 18px; }
+
+    /* Product Grid */
+    .grid {
+      display: grid; gap: 16px; grid-template-columns: repeat(4, 1fr);
+    }
+    @media (max-width: 980px) { .grid { grid-template-columns: repeat(3, 1fr); } .hero { grid-template-columns: 1fr; } }
+    @media (max-width: 680px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 420px) { .grid { grid-template-columns: 1fr; } }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+    .card img { aspect-ratio: 1/1; object-fit: cover; }
+    .card .info { padding: 12px; display: grid; gap: 6px; }
+    .name { font-weight: 700; }
+    .price { font-weight: 800; }
+    .muted { color: var(--muted); font-size: 14px; }
+    .actions { display: flex; gap: 8px; margin-top: 6px; }
+    .btn {
+      flex: 1; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--border);
+      background: white; cursor: pointer; font-weight: 700;
+    }
+    .btn.primary { background: var(--brand); color: white; border-color: transparent; }
+    .btn.primary:hover { background: var(--brand-dark); }
+
+    /* About & Contact */
+    .about, .contact {
+      background: linear-gradient(180deg, #ffffff, #fafafa);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px;
+    }
+    .contact form { display: grid; gap: 10px; }
+    .contact input, .contact textarea {
+      width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--border);
+      font: inherit;
+    }
+    .contact button { justify-self: start; }
+
+    /* Footer */
+    footer { color: var(--muted); padding: 40px 0; text-align: center; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="logo"><a href="#home">The <span>Dugoo</span> Store</a></div>
+      <nav>
+        <a href="#products">Products</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="home" class="container">
+    <!-- Hero -->
+    <section class="hero">
+      <div>
+        <h1>Fresh finds at The Dugoo Store</h1>
+        <p>Your friendly neighborhood shop for trendy goods, daily essentials, and gift-worthy picks. Simple, fast, and reliable.</p>
+        <button class="cta" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Shop the collection →</button>
+      </div>
+      <div class="hero-card">
+        <img src="https://picsum.photos/800/600?random=2" alt="Featured product" />
+        <div class="note">Weekly feature: Handpicked items with free shipping over ₹999.</div>
+      </div>
+    </section>
+
+    <!-- Products -->
+    <section id="products">
+      <h2 class="section-title">Popular Products</h2>
+      <p class="section-sub">Swap images and text to add your real items.</p>
+
+      <div class="grid">
+        <!-- Product Card Template (duplicate/edit as needed) -->
+        <article class="card">
+          <img src="https://picsum.photos/600?random=11" alt="Product 1" />
+          <div class="info">
+            <div class="name">Dugoo Tote Bag</div>
+            <div class="muted">Eco-friendly • 100% cotton</div>
+            <div class="price">₹799</div>
+            <div class="actions">
+              <button class="btn primary" onclick="addToCart('Dugoo Tote Bag')">Add to Cart</button>
+              <button class="btn" onclick="viewDetails('Dugoo Tote Bag')">Details</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://picsum.photos/600?random=12" alt="Product 2" />
+          <div class="info">
+            <div class="name">Classic Water Bottle</div>
+            <div class="muted">BPA-free • 700ml</div>
+            <div class="price">₹599</div>
+            <div class="actions">
+              <button class="btn primary" onclick="addToCart('Classic Water Bottle')">Add to Cart</button>
+              <button class="btn" onclick="viewDetails('Classic Water Bottle')">Details</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://picsum.photos/600?random=13" alt="Product 3" />
+          <div class="info">
+            <div class="name">Wireless Earbuds</div>
+            <div class="muted">Noise-cancel • 24h play</div>
+            <div class="price">₹2,499</div>
+            <div class="actions">
+              <button class="btn primary" onclick="addToCart('Wireless Earbuds')">Add to Cart</button>
+              <button class="btn" onclick="viewDetails('Wireless Earbuds')">Details</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://picsum.photos/600?random=14" alt="Product 4" />
+          <div class="info">
+            <div class="name">Smart LED Lamp</div>
+            <div class="muted">Warm & cool tones</div>
+            <div class="price">₹1,299</div>
+            <div class="actions">
+              <button class="btn primary" onclick="addToCart('Smart LED Lamp')">Add to Cart</button>
+              <button class="btn" onclick="viewDetails('Smart LED Lamp')">Details</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="about" style="margin-top: 32px;">
+      <h2 class="section-title">About The Dugoo Store</h2>
+      <p class="section-sub">We believe shopping should be simple.</p>
+      <p>Started in 2025, The Dugoo Store curates quality products at fair prices. We focus on quick delivery, easy returns, and friendly support. Replace this text with your brand story.</p>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact" style="margin-top: 24px;">
+      <h2 class="section-title">Contact Us</h2>
+      <p class="section-sub">Questions or bulk orders? Reach out!</p>
+      <form onsubmit="event.preventDefault(); alert('Thanks! We\'ll get back to you soon.'); this.reset();">
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
+          <input type="text" placeholder="Your name" required />
+          <input type="email" placeholder="Email" required />
+        </div>
+        <textarea rows="4" placeholder="Your message"></textarea>
+        <button class="cta" type="submit">Send message →</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © <span id="year"></span> The Dugoo Store • All rights reserved
+    </div>
+  </footer>
+
+  <script>
+    // Tiny demo cart (front-end only)
+    const cart = [];
+    function addToCart(name) {
+      cart.push(name);
+      alert(`${name} added to cart (demo). Items in cart: ${cart.length}`);
+    }
+    function viewDetails(name) {
+      alert(`${name}: replace this with a product page or modal.`);
+    }
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
